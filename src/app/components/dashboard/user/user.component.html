@@ -1,1 +1,105 @@
-<p>user works!</p>
+<div id="wrapper">
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <div class="container-fluid">
+          <div class="card shadow mb-4">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-6" >
+                  <h4 class="m-0 font-weight-bold text-primary"> Manage Employees </h4>
+                </div>
+                
+                <!-- <div class="offset-md-4 col-md-2">
+                  <a routerLink="../dashboard/createEmployeeNew">
+                    <button *ngIf="(userObjParse.EmployeeRoleId == 1 || userObjParse.EmployeeRoleId == 2 && (IsAll==0))"
+                      class="btn btn-primary btn-sm btn-block">+ Create Employee</button> </a>
+                </div> -->
+              </div>
+            </div>
+            <!-- <div class="card-header">
+              <div class="row">
+                <div class="col-md-2" >
+                  <label for="Class" class="col-form-label text-md-right" style="font-weight: bold; color: #007bff;"> Class Type:
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <select class="form-control" id="Class" #t (change)="changeClass(t.value)">
+                    <option value="0">Select Class Type </option>
+                    <option [value]="i.ClassId" *ngFor="let i of ClassData">{{i.ClassName}}</option>
+                  </select>
+                </div>
+   
+                <div class="col-md-2">
+                  <label class="radio-inline"><input id = "0" type="radio" [(ngModel)]="Active" name="IsActive" value="1" ng-checked="(Active == 1)"  (click)="changeActive($event)">&nbsp;Active</label>&nbsp;
+                  <label class="radio-inline"><input id = "1" type="radio" [(ngModel)]="Active" name="IsActive" value="0" ng-checked="(Active == 0)" (click)="changeActive($event)">&nbsp;InActive </label>               
+                </div>
+                <div class="col-md-3">
+                  <div class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input type="text" [(ngModel)]="searchTerm" class="form-control  small" placeholder="Search..."
+                        aria-label="Search" autocomplete="off" autofocus aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <a *ngIf="classID != 0 && !noData" (click)="exportToExcel()">
+                      <button class="btn btn-primary btn-sm btn-block">Export to Excel</button>
+                    </a>
+                </div>
+              </div>
+            </div> -->
+  
+            <div class="card-body">
+              <div class="table-reponsive table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        <span> Name</span>
+                      </th>
+                      <th>
+                        <span> Phone</span>
+                      </th>
+                      <th>
+                        <span> Email</span>
+                      </th>
+                      <th>
+                        <span > Category </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let i of usersList">
+                    <tr role="row" class="odd">
+                      <td class="blue-link"><span (click)="redirectToUpdateEmployee(i)">{{i?.name}}</span></td>
+                      <td>{{i?.phone }}</td>
+                      <td>{{i?.email }}</td>
+                      <td>{{i?.category}}</td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="usersList.lenght">
+                    <tr class="text-center">
+                      <td colspan="6">
+                        <h3>No Data</h3>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- <pre>{{ usersList | json }}</pre> -->
+                <!-- <pagination-controls *ngIf="employeeData" (pageChange)="currentPageNumber=$event" class="text-center">
+                </pagination-controls> -->
+              </div>
+            </div>
+
+          </div>
+          <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">Loading...</ngx-loading> -->
+        </div>
+      </div>
+    </div>
+</div>
