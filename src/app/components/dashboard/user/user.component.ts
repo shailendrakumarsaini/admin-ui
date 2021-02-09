@@ -7,8 +7,6 @@ import { ApiService } from './../../../services/api.service';
 })
 export class UserComponent implements OnInit {
   usersList:any = [];
-  fieldName : string;
-  order : boolean = false;
   constructor(
     private apiService :ApiService
   ) { }
@@ -24,11 +22,8 @@ export class UserComponent implements OnInit {
     }),err=>{ console.log(err);};
   }
 
-  orderByFunction(value){
-    if (this.fieldName === value) {
-      this.order = !this.order;
-    }
-    this.fieldName = value;
+  redirectToUpdateUserComponent(id){
+
   }
 
 }
