@@ -6,10 +6,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 // Custom Modules
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppLoadingComponent } from './shared/app-loading/app-loading.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppLoadingComponent
   ],
   imports: [
     BrowserModule,
