@@ -1,7 +1,13 @@
 # AdminUi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
+### Steps to serve PWA app (Win)
 
+1. switch to admin-ui repo folder
+2. checkout to branch `develop`
+3. install angular CLI `npm install @angualr/cli -g`
+4. `npm install`
+5. `ng serve`
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
