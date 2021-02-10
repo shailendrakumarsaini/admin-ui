@@ -12,11 +12,21 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  show() { this.isLoading.next(true); }
+  showLoader() { this.isLoading.next(true); }
 
-  hide() { this.isLoading.next(false); }
+  hideLoader() { this.isLoading.next(false); }
   
   get(url: any) {
     return this.http.get(`${this.apiBaseUrl}${url}`);
   }
+
+  post(url:string, requestBody:any,  headers?: HttpHeaders){
+    let httpOptions: any = {};
+    if (headers) {
+      httpOptions.headers = headers;
+    }
+
+    return this.http.post(`${this.apiBaseUrl}${url}`, requestBody, httpOptions);
+  }
+  
 }

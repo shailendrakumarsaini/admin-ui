@@ -13,19 +13,38 @@
                     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)" class="user">
 
                         <div class="form-group">
-                            <input type="text" #emailCtrl="ngModel" [(ngModel)]="email" name="email" class="form-control form-control-user" 
-                            placeholder="xxxx@gmail.com" required [class.is-invalid]="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)" autocomplete="off">
+                            <input 
+                              type="email" 
+                              #emailCtrl="ngModel" 
+                              [(ngModel)]="email" 
+                              name="email" 
+                              class="form-control form-control-user" 
+                              placeholder="xxxx@gmail.com" 
+                              required 
+                              email
+                              [class.is-invalid]="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)" 
+                              autocomplete="off">
                             <div *ngIf="emailCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" class="invalid-feedback">
                                 <div *ngIf="emailCtrl.errors?.required">Please Enter Email</div>
+                                <div *ngIf="emailCtrl.errors?.email">Please Enter Valid Email</div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                        <input type="text" #passwordCtrl="ngModel" [(ngModel)]="password" name="password" MinDigit="4" class="form-control form-control-user" 
-                            placeholder="xxxx" required minlength="4" [class.is-invalid]="passwordCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" autocomplete="off">
+                          <input 
+                            type="password" 
+                            #passwordCtrl="ngModel" 
+                            [(ngModel)]="password" 
+                            name="password" 
+                            class="form-control form-control-user" 
+                            placeholder="xxxx" 
+                            required 
+                            minlength="4" 
+                            [class.is-invalid]="passwordCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" 
+                            autocomplete="off">
                             <div *ngIf="passwordCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" class="invalid-feedback">
                             <div *ngIf="passwordCtrl.errors?.required">Please Enter Password</div>
-                            <div *ngIf="passwordCtrl.errors?.minlength">4 Digits Are Required</div>
+                            <div *ngIf="passwordCtrl.errors?.minlength">Minimum 4 Characters required</div>
                             </div>
                         </div>
 
