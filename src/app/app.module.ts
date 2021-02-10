@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppLoadingComponent } from './shared/app-loading/app-loading.component';
 
+// Services
+import { Interceptor } from './services/interceptor.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,9 @@ import { AppLoadingComponent } from './shared/app-loading/app-loading.component'
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
