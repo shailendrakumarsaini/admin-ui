@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './../../../services/api.service';
 
 @Component({
   selector: 'app-category',
@@ -6,10 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
+  categoryList: any = [];
+  constructor(
+    private apiService :ApiService
+  ) { }
 
-  constructor() { }
+  async ngOnInit(){
+    await this.getUsersList();
+  }
 
-  ngOnInit(): void {
+  redirectToUpdateCategoryComponent(id){
+    
+  }
+
+  getUsersList(){
+    this.apiService.get('category').subscribe(res=>{
+      console.log('[category list]',res);
+      this.categoryList = res;
+    }),err=>{ console.log(err);};
   }
 
 }

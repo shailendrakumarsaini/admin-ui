@@ -6,7 +6,7 @@ import { ApiService } from './../../../services/api.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  usersList:any = [];
+  userList:any = [];
   constructor(
     private apiService :ApiService
   ) { }
@@ -17,8 +17,8 @@ export class UserComponent implements OnInit {
 
   getUsersList(){
     this.apiService.get('user').subscribe(res=>{
-      console.log(res);
-      this.usersList = res;
+      console.log('[user list]',res);
+      this.userList = res;
     }),err=>{ console.log(err);};
   }
 
