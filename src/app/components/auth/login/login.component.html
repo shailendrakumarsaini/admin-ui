@@ -17,13 +17,13 @@
                               type="email" 
                               #emailCtrl="ngModel" 
                               [(ngModel)]="email" 
-                              name="email" 
-                              class="form-control form-control-user" 
-                              placeholder="xxxx@gmail.com" 
+                              name="email"
                               required 
                               email
-                              [class.is-invalid]="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)" 
-                              autocomplete="off">
+                              autocomplete="off"
+                              placeholder="xxxx@gmail.com"
+                              class="form-control form-control-user" 
+                              [class.is-invalid]="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)">
                             <div *ngIf="emailCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" class="invalid-feedback">
                                 <div *ngIf="emailCtrl.errors?.required">Please Enter Email</div>
                                 <div *ngIf="emailCtrl.errors?.email">Please Enter Valid Email</div>
@@ -35,13 +35,13 @@
                             type="password" 
                             #passwordCtrl="ngModel" 
                             [(ngModel)]="password" 
-                            name="password" 
-                            class="form-control form-control-user" 
-                            placeholder="xxxx" 
+                            name="password"
                             required 
                             minlength="4" 
-                            [class.is-invalid]="passwordCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" 
-                            autocomplete="off">
+                            placeholder="xxxx" 
+                            autocomplete="off"
+                            class="form-control form-control-user"
+                            [class.is-invalid]="passwordCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)">
                             <div *ngIf="passwordCtrl.invalid && (passwordCtrl.touched || passwordCtrl.dirty)" class="invalid-feedback">
                             <div *ngIf="passwordCtrl.errors?.required">Please Enter Password</div>
                             <div *ngIf="passwordCtrl.errors?.minlength">Minimum 4 Characters required</div>

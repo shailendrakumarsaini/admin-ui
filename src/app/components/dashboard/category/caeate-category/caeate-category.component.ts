@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-caeate-category',
   templateUrl: './caeate-category.component.html',
@@ -27,7 +28,9 @@ export class CaeateCategoryComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder, 
-    private router :Router
+    private router :Router,
+    private apiService: ApiService,
+    private toastr: ToastrService
     ) {}
 
   ngOnInit() {
@@ -38,7 +41,21 @@ export class CaeateCategoryComponent implements OnInit {
   }
 
   onSubmit(formData){
-    console.log(formData);
+    this.apiService.post('category', formData).subscribe(
+      (res)=>{
+        if(res && res['success']){
+          this.toastr.success(res['message']);
+          this.router.navigate(['dashboard', 'category']);
+        }else{
+          this.toastr.error(res['message']);
+          console.error(res);
+        }
+      },
+      (err)=>{
+        this.toastr.error(err['message']);
+        console.error(err);
+      }
+    );
   }
 
   initFrom(){

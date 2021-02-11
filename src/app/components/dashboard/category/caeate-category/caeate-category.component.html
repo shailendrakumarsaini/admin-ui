@@ -21,7 +21,8 @@
                                 minlength="3"
                                 [class.is-invalid]="formErrors.name"
                                 class="form-control"
-                                placeholder="Enter Category Name" 
+                                placeholder="Enter Category Name"
+                                autocomplete="off"
                                 id="name">
                             <div *ngIf="formErrors.name" class="invalid-feedback">
                                 {{formErrors.name}}</div>

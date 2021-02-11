@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['dashboard', 'user']);
       }else{
         this.toastr.error( res['message']);
-        console.log(res);
+        console.error(res);
       }
     }),err=>{
       this.toastr.error(err['message']);
-      console.log(err);
+      console.error(err);
     };
   }
 
