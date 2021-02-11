@@ -15,7 +15,14 @@ export class Interceptor implements HttpInterceptor {
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+
+        // req = req.clone({
+        //     setHeaders: {
+        //     'Content-Type': 'application/json',
+        //     'Access-Control-Allow-Origin': '*'
+        //     }
+        // });
+
         if (req) {
             this.requests.push(req);
             this.apiService.isLoading.next(true);
