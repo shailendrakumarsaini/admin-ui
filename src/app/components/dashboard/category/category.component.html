@@ -21,6 +21,7 @@
             <th><span>Status</span></th>
             <th><span>Created At</span></th>
             <th><span>Updated At</span></th>
+            <th><span>Action</span></th>
           </tr>
         </thead>
         <tbody *ngFor="let i of categoryList">
@@ -29,9 +30,12 @@
             <td>{{ i?.active }}</td>
             <td>{{ i?.created_at }}</td>
             <td>{{ i?.updated_at }}</td>
+            <td>
+              <i (click)="delete(i._id)" class="cursor" class="fa fa-trash" style="color: red;" aria-hidden="true"></i>
+            </td>
           </tr>
         </tbody>
-        <tbody *ngIf="categoryList.lenght">
+        <tbody *ngIf="!categoryList.length">
           <tr class="text-center">
             <td colspan="6">
               <h3>No Data</h3>

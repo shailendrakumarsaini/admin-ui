@@ -28,5 +28,9 @@ export class ApiService {
 
     return this.http.post(`${this.apiBaseUrl}${url}`, requestBody, httpOptions);
   }
+
+  delete(url: any, id: string) {
+    return this.http.delete(`${this.apiBaseUrl}${url}/${id}`);
+  }
   
 }
