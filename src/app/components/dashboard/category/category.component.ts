@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CategoryComponent implements OnInit {
   categoryList: any = [];
-  
+
   constructor(
     private apiService :ApiService,
     private router : Router,
@@ -26,10 +26,13 @@ export class CategoryComponent implements OnInit {
   }
 
   getUsersList(){
-    this.apiService.get('category').subscribe(res=>{
-      console.log('[category list]',res);
-      this.categoryList = res;
-    }),err=>{ console.log(err);};
+    this.apiService.get('category').subscribe(
+      res => {
+        console.log('[category list]',res);
+        this.categoryList = res;
+      },
+      err => console.error(err)
+    );
   }
 
   update(id){
@@ -38,7 +41,7 @@ export class CategoryComponent implements OnInit {
 
   delete(id){
     this.apiService.delete('category', id).subscribe(
-      (res)=>{
+      (res) => {
         if(res && res['success']){
           this.toastr.success(res['message']);
           this.getUsersList();
@@ -47,7 +50,7 @@ export class CategoryComponent implements OnInit {
           this.toastr.error(res['message']);
         }
       },
-      (err)=>{ 
+      (err) => { 
         console.error(err);
         this.toastr.error(err['error']['message']);
       }

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CaeateCategoryComponent } from './caeate-category.component';
+import { CaeateCategoryComponent } from './create-category.component';
 
 describe('CaeateCategoryComponent', () => {
   let component: CaeateCategoryComponent;

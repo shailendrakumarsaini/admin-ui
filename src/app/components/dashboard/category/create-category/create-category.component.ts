@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'app-caeate-category',
-  templateUrl: './caeate-category.component.html',
-  styleUrls: ['./caeate-category.component.scss']
+  selector: 'app-create-category',
+  templateUrl: './create-category.component.html',
+  styleUrls: ['./create-category.component.scss']
 })
 export class CaeateCategoryComponent implements OnInit {
 
