@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { ApiService } from './../../../services/api.service';
 export class CategoryComponent implements OnInit {
   categoryList: any = [];
   constructor(
-    private apiService :ApiService
+    private apiService :ApiService,
+    private router : Router
   ) { }
 
   async ngOnInit(){
@@ -17,7 +19,7 @@ export class CategoryComponent implements OnInit {
   }
 
   redirectToUpdateCategoryComponent(id){
-    
+    this.router.navigate([`/dashboard/category/${id}`]);
   }
 
   getUsersList(){
