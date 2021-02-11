@@ -35,10 +35,7 @@ export class CaeateCategoryComponent implements OnInit {
     private toastr: ToastrService,
     private activatedRoute : ActivatedRoute
     ) {
-      this.activatedRoute.params.subscribe(params => {
-        console.log(params);
-        this.id = params['id'];
-      });
+      this.activatedRoute.params.subscribe(params => { this.id = params['id']; });
     }
 
   async ngOnInit() {

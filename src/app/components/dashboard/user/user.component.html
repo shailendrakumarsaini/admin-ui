@@ -25,7 +25,7 @@
         </thead>
         <tbody *ngFor="let i of userList">
           <tr role="row" class="odd">
-            <td class="blue-link"><span (click)="redirectToUpdateUserComponent(i)">{{i?.name}}</span></td>
+            <td class="blue-link"><span (click)="redirectToUpdateUserComponent(i._id)">{{i?.name}}</span></td>
             <td>{{i?.phone }}</td>
             <td>{{i?.email }}</td>
             <td>{{i?.category}}</td>

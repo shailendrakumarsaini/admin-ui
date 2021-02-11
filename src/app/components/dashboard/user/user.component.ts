@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -8,7 +9,8 @@ import { ApiService } from './../../../services/api.service';
 export class UserComponent implements OnInit {
   userList:any = [];
   constructor(
-    private apiService :ApiService
+    private apiService :ApiService,
+    private router :Router
   ) { }
 
   async ngOnInit(){
@@ -23,7 +25,7 @@ export class UserComponent implements OnInit {
   }
 
   redirectToUpdateUserComponent(id){
-
+    this.router.navigate([`/dashboard/user/update/${id}`]);
   }
 
 }
