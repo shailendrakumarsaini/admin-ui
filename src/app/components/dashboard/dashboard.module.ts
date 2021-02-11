@@ -10,7 +10,6 @@ import { FooterComponent } from './../../shared/footer/footer.component';
 import { UserComponent } from './user/user.component';
 import { CategoryComponent } from './category/category.component';
 import { CaeateCategoryComponent } from './category/create-category/create-category.component';
-import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 import { CourseComponent } from './course/course.component';
 import { AssignmentComponent } from './assignment/assignment.component';
 import { QuestionComponent } from './question/question.component';
@@ -24,7 +23,6 @@ import { QuestionComponent } from './question/question.component';
     UserComponent,
     CategoryComponent,
     CaeateCategoryComponent,
-    CategoryDetailComponent,
     CourseComponent,
     AssignmentComponent,
     QuestionComponent,
