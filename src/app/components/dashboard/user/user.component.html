@@ -28,7 +28,11 @@
             <td class="blue-link"><span (click)="redirectToUpdateUserComponent(i._id)">{{i?.name}}</span></td>
             <td>{{i?.phone }}</td>
             <td>{{i?.email }}</td>
-            <td>{{i?.category}}</td>
+            <td>
+              <ng-container *ngFor="let i of i?.category">
+                {{i?.name}},
+              </ng-container>
+            </td>
           </tr>
         </tbody>
         <tbody *ngIf="!userList.length">
