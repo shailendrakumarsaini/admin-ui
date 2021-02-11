@@ -1,1 +1,62 @@
-<p>caeate-category works!</p>
+<div class="card shadow mb-4">
+    <div class="card-header ">
+        <div class="row">
+            <div class="col-md-3">
+                <h4 class="m-0 font-weight-bold text-primary"> Create Category</h4>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.value)">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="name" class="col-md-6 col-form-label text-md-right">
+                            Category Name: <span class="text-danger">*</span> </label>
+                        <div class="col-md-6">
+                            <input type="text" 
+                                formControlName="name" 
+                                (blur)="logValidationMessages()"
+                                minlength="3"
+                                [class.is-invalid]="formErrors.name"
+                                class="form-control"
+                                placeholder="Enter Category Name" 
+                                id="name">
+                            <div *ngIf="formErrors.name" class="invalid-feedback">
+                                {{formErrors.name}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label class="col-md-6 col-form-label text-md-right">
+                            Status: <span class="text-danger">*</span> 
+                        </label>
+                        <div class="col-md-6">
+                            <label class="radio-inline"><input type="radio" formControlName="active" value="true">&nbsp;Active</label>&nbsp;&nbsp;&nbsp;
+                            <label class="radio-inline"><input type="radio" formControlName="active" value="false">&nbsp;Not Active</label>&nbsp;&nbsp;&nbsp;
+                            <!-- <select 
+                                formControlName="active" 
+                                (blur)="logValidationMessages()"
+                                class="form-control"
+                                [class.is-invalid]="formErrors.active">
+                                <option value="" disabled>Select Status</option>
+                                <option value="true">Active </option>
+                                <option value="false">Not Active </option>
+                            </select> -->
+                            <div *ngIf="formErrors.active" class="invalid-feedback">{{formErrors.active}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="col-md-2 offset-md-10">
+                <button type="submit" class="btn btn-primary btn-sm btn-block"
+                    [disabled]="categoryForm.invalid">+ Create</button>
+            </div>
+        </div>
+    </form>
+    <pre>{{ categoryForm.value | json }}</pre>
+</div>
