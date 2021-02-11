@@ -16,6 +16,7 @@ const routes: Routes = [
         { path: 'user', component: UserComponent },
         { path: 'category', component: CategoryComponent },
         { path: 'category/create', component: CaeateCategoryComponent },
+        { path: 'category/update/:id', component: CaeateCategoryComponent },
         { path: 'category/:id', component: CategoryDetailComponent },
         { path: 'course', component: CourseComponent },
         { path: 'assignment', component: AssignmentComponent },

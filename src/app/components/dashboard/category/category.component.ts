@@ -21,10 +21,6 @@ export class CategoryComponent implements OnInit {
     await this.getUsersList();
   }
 
-  redirectToUpdateCategoryComponent(id){
-    this.router.navigate([`/dashboard/category/${id}`]);
-  }
-
   getUsersList(){
     this.apiService.get('category').subscribe(
       res => {
@@ -35,8 +31,8 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-  update(id){
-    console.log(id);
+  redirectToUpdateCategoryComponent(id){
+    this.router.navigate([`/dashboard/category/update/${id}`]);
   }
 
   delete(id){

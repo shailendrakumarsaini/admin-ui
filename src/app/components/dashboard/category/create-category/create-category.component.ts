@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -10,15 +10,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CaeateCategoryComponent implements OnInit {
 
-  categoryForm : FormGroup; 
+  categoryForm : FormGroup;
+  id: string;
+  category : any;
   validationMessages  = {
     'name' : {
-                      'required': 'Category Name is Required',
-                      'minlength': '3 Characters are Required'
-                    },
+                'required': 'Category Name is Required',
+                'minlength': '3 Characters are Required'
+             },
     'active' : {
-                    'required': 'Status is Required'
-                  },
+                  'required': 'Status is Required'
+               },
   };
 
   formErrors = {
@@ -30,32 +32,76 @@ export class CaeateCategoryComponent implements OnInit {
     private fb:FormBuilder, 
     private router :Router,
     private apiService: ApiService,
-    private toastr: ToastrService
-    ) {}
+    private toastr: ToastrService,
+    private activatedRoute : ActivatedRoute
+    ) {
+      this.activatedRoute.params.subscribe(params => {
+        console.log(params);
+        this.id = params['id'];
+      });
+    }
 
-  ngOnInit() {
-    this.initFrom();
+  async ngOnInit() {
+    await this.initFrom();
     this.categoryForm.valueChanges.subscribe(value =>{
       this.logValidationMessages();
     });
+    if(this.id){
+      this.getDataAndPopulateInForm(this.id);
+    }
+  }
+
+  getDataAndPopulateInForm(id){
+    this.apiService.get(`category/${id}`).subscribe(
+      res => {
+        console.log('[category response]',res);
+        this.category = res;
+        this.categoryForm.patchValue({
+          name : res['name'],
+          active : res['active'],
+        });
+      },
+      err => {
+        console.error(err);
+        this.toastr.error(err['error']['message']);
+      },
+    );
   }
 
   onSubmit(formData){
-    this.apiService.post('category', formData).subscribe(
-      (res)=>{
-        if(res && res['success']){
-          this.toastr.success(res['message']);
-          this.router.navigate(['dashboard', 'category']);
-        }else{
-          this.toastr.error(res['message']);
-          console.error(res);
+    if(this.id){
+      this.apiService.patch(`category/${this.id}`, formData).subscribe(
+        (res)=>{
+          if(res && res['success']){
+            this.toastr.success(res['message']);
+            this.router.navigate(['dashboard', 'category']);
+          }else{
+            this.toastr.error(res['message']);
+            console.error(res);
+          }
+        },
+        (err)=>{
+          console.error(err);
+          this.toastr.error(err['error']['message']);
         }
-      },
-      (err)=>{
-        this.toastr.error(err['message']);
-        console.error(err);
-      }
-    );
+      );
+    }else{
+      this.apiService.post('category', formData).subscribe(
+        (res)=>{
+          if(res && res['success']){
+            this.toastr.success(res['message']);
+            this.router.navigate(['dashboard', 'category']);
+          }else{
+            this.toastr.error(res['message']);
+            console.error(res);
+          }
+        },
+        (err)=>{
+          console.error(err);
+          this.toastr.error(err['error']['message']);
+        }
+      );
+    }
   }
 
   initFrom(){

@@ -29,6 +29,15 @@ export class ApiService {
     return this.http.post(`${this.apiBaseUrl}${url}`, requestBody, httpOptions);
   }
 
+  patch(url:string, requestBody:any, headers?: HttpHeaders){
+    let httpOptions: any = {};
+    if (headers) {
+      httpOptions.headers = headers;
+    }
+
+    return this.http.patch(`${this.apiBaseUrl}${url}`, requestBody, httpOptions);
+  }
+
   delete(url: any, id: string) {
     return this.http.delete(`${this.apiBaseUrl}${url}/${id}`);
   }
