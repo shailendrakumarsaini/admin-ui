@@ -18,14 +18,21 @@ export class UserComponent implements OnInit {
   }
 
   getUsersList(){
-    this.apiService.get('user').subscribe(res=>{
-      console.log('[user list]',res);
-      this.userList = res;
-    }),err=>{ console.log(err);};
+    this.apiService.get('user').subscribe(
+      res=>{
+        console.log('[user list]',res);
+        this.userList = res;
+      },
+      err=> console.log(err)
+    );
   }
 
   redirectToUpdateUserComponent(id){
     this.router.navigate([`/dashboard/user/update/${id}`]);
+  }
+
+  delete(id){
+    console.log(id);
   }
 
 }
