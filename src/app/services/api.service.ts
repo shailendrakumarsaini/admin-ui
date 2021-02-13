@@ -65,6 +65,6 @@ export class ApiService {
         this.toastr.error(errorResponse.error.message);
     }
     return throwError('There is a problem with the service. We are notified & working on it. Please try again later.');
-}
+  }
   
 }
