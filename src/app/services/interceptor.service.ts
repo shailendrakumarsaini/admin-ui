@@ -27,7 +27,7 @@ export class Interceptor implements HttpInterceptor {
         // });
 
         const headerName = 'token';
-        let token = sessionStorage.getItem('jwt');
+        let token = localStorage.getItem('jwt');
         if (!req.headers.has(headerName) && !req.url.includes('login') && token) {
           req = req.clone({ setHeaders: { [headerName]: token } });
         }
@@ -46,7 +46,7 @@ export class Interceptor implements HttpInterceptor {
                         if (event.status == 401) {
                             // console.log(event.body.message);
                             this.toastr.error('Session Expired');
-                            sessionStorage.clear();
+                            localStorage.clear();
                             this.router.navigate(['/auth/login']);
                         }
                     }
@@ -56,7 +56,7 @@ export class Interceptor implements HttpInterceptor {
                         if (error.status == 401) {
                             // console.log(error);
                             this.toastr.error('Session Expired');
-                            sessionStorage.clear();
+                            localStorage.clear();
                             this.router.navigate(['/auth/login']);
                         }
                     }

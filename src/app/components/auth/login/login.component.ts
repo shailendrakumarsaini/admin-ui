@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.apiService.post('user/login', formData).subscribe(res=>{
       if(res['success'] && res['token']){
         this.toastr.success('Login Successfully');
-        sessionStorage.setItem('jwt', res['token']);
+        localStorage.setItem('jwt', res['token']);
         this.router.navigate(['dashboard', 'user']);
       }else{
         this.toastr.error( res['message']);
