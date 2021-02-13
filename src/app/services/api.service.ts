@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ApiService {
   apiBaseUrl : string = environment.apiBaseUrl;
   isLoading = new BehaviorSubject(false);
+
   constructor(
     private http: HttpClient
   ) { }
@@ -16,30 +17,40 @@ export class ApiService {
 
   hideLoader() { this.isLoading.next(false); }
   
-  get(url: any) {
-    return this.http.get(`${this.apiBaseUrl}${url}`);
+  get(url: any, headers?: HttpHeaders) {
+    let httpOptions: any = {  
+      withCredentials: true 
+    };
+    if (headers) { httpOptions.headers = headers; }
+
+    return this.http.get(`${this.apiBaseUrl}${url}`, httpOptions);
   }
 
-  post(url:string, requestBody:any,  headers?: HttpHeaders){
-    let httpOptions: any = {};
-    if (headers) {
-      httpOptions.headers = headers;
-    }
+  post(url:string, requestBody:any, headers?: HttpHeaders){
+    let httpOptions: any = {  
+      withCredentials: true 
+    };
+    if (headers) { httpOptions.headers = headers; }
 
     return this.http.post(`${this.apiBaseUrl}${url}`, requestBody, httpOptions);
   }
 
   patch(url:string, requestBody:any, headers?: HttpHeaders){
-    let httpOptions: any = {};
-    if (headers) {
-      httpOptions.headers = headers;
-    }
+    let httpOptions: any = {  
+      withCredentials: true 
+    };
+    if (headers) { httpOptions.headers = headers; }
 
     return this.http.patch(`${this.apiBaseUrl}${url}`, requestBody, httpOptions);
   }
 
-  delete(url: any, id: string) {
-    return this.http.delete(`${this.apiBaseUrl}${url}/${id}`);
+  delete(url: any, id: string, headers?: HttpHeaders) {
+    let httpOptions: any = {  
+      withCredentials: true 
+    };
+    if (headers) { httpOptions.headers = headers; }
+
+    return this.http.delete(`${this.apiBaseUrl}${url}/${id}`, httpOptions);
   }
   
 }
