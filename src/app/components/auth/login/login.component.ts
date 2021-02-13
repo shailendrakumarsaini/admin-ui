@@ -21,19 +21,22 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(formData){
-    this.apiService.post('user/login', formData).subscribe(res=>{
-      if(res['success'] && res['token']){
-        this.toastr.success('Login Successfully');
-        localStorage.setItem('jwt', res['token']);
-        this.router.navigate(['dashboard', 'user']);
-      }else{
-        this.toastr.error( res['message']);
-        console.error(res);
+    this.apiService.post('user/login', formData).subscribe(
+      (res) => {
+        if(res['success'] && res['token']){
+          this.toastr.success('Login Successfully');
+          localStorage.setItem('jwt', res['token']);
+          this.router.navigate(['dashboard', 'user']);
+        }else{
+          console.error(res);
+          this.toastr.error( res['message']);
+        }
+      },
+      (err) => {
+        console.error(err);
+        this.toastr.error(err['message']);
       }
-    }),err=>{
-      this.toastr.error(err['message']);
-      console.error(err);
-    };
+    );
   }
 
 }
