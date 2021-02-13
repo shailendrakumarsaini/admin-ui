@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
       (res) => {
         if(res['success']){
           this.toastr.success('Logout Successfully');
-          localStorage.removeItem('jwt');
+          localStorage.removeItem('token');
           this.router.navigate(['auth','login']);
         }else{
           console.error(res);

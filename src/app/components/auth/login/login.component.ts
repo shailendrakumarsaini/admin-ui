@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       (res) => {
         if(res['success'] && res['token']){
           this.toastr.success('Login Successfully');
-          localStorage.setItem('jwt', res['token']);
+          localStorage.setItem('token', res['token']);
           this.router.navigate(['dashboard', 'user']);
         }else{
           console.error(res);

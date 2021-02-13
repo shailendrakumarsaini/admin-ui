@@ -10,7 +10,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,} from
     ) { }
   
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-        if(localStorage.getItem('jwt')) {
+        if(localStorage.getItem('token')) {
             return true;
         }
         // not logged in so redirect to login page with the return url
@@ -30,7 +30,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,} from
     ) { }
   
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-        if(localStorage.getItem('jwt')) {
+        if(localStorage.getItem('token')) {
             this.router.navigate(['/dashboard/user']);
             return false;
         }

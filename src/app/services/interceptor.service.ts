@@ -27,7 +27,7 @@ export class Interceptor implements HttpInterceptor {
         // });
 
         const headerName = 'token';
-        let token = localStorage.getItem('jwt');
+        let token = localStorage.getItem('token');
         if (!req.headers.has(headerName) && !req.url.includes('login') && token) {
           req = req.clone({ setHeaders: { [headerName]: token } });
         }
