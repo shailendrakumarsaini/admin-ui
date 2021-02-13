@@ -26,6 +26,12 @@ export class Interceptor implements HttpInterceptor {
         //     }
         // });
 
+        const headerName = 'token';
+        let token = sessionStorage.getItem('jwt');
+        if (!req.headers.has(headerName) && !req.url.includes('login') && token) {
+          req = req.clone({ setHeaders: { [headerName]: token } });
+        }
+
         if (req) {
             this.requests.push(req);
             this.apiService.isLoading.next(true);
