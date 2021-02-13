@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-course',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private apiService: ApiService
+  ) { }
 
   ngOnInit(): void {
+    this.apiService.get('dashboard').subscribe(
+      res => {
+        console.log('[response]',res);
+      },
+      err => console.error(err)
+    );
   }
 
 }
