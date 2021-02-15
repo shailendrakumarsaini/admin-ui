@@ -1,0 +1,7 @@
+<div class="overlay" [hidden]="!isLoading">
+    <img class="spinner" src="/assets/images/loading-grey.gif" width="60"/>
+</div>
+
+<div class="overlay" *ngIf="isLoadingWorker | async">
+    <img class="spinner" src="/assets/images/loading-grey.gif" width="60"/>
+</div>

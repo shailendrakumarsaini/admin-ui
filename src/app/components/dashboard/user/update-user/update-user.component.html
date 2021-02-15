@@ -1,0 +1,143 @@
+<div class="card shadow mb-4">
+    <div class="card-header ">
+        <div class="row">
+            <div class="col-md-3">
+                <h4 class="m-0 font-weight-bold text-primary"> Update User</h4>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="name" class="col-md-3 col-form-label text-md-right">
+                            Name: <span class="text-danger">*</span> </label>
+                        <div class="col-md-9">
+                            <input type="text" 
+                                formControlName="name" 
+                                (blur)="logValidationMessages()"
+                                minlength="3"
+                                [class.is-invalid]="formErrors.name"
+                                class="form-control"
+                                placeholder="Enter Name"
+                                autocomplete="off"
+                                id="name">
+                            <div *ngIf="formErrors.name" class="invalid-feedback">
+                                {{formErrors.name}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="phone" class="col-md-3 col-form-label text-md-right">
+                            Phone: <span class="text-danger">*</span> </label>
+                        <div class="col-md-9">
+                            <input type="text" 
+                                formControlName="phone" 
+                                (blur)="logValidationMessages()"
+                                minlength="10"
+                                maxlength="10"
+                                [class.is-invalid]="formErrors.phone"
+                                class="form-control"
+                                placeholder="xxxxxxxxxx"
+                                autocomplete="off"
+                                id="phone">
+                            <div *ngIf="formErrors.phone" class="invalid-feedback">
+                                {{formErrors.phone}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="email" class="col-md-3 col-form-label text-md-right">
+                            Email: <span class="text-danger">*</span> </label>
+                        <div class="col-md-9">
+                            <input type="text" 
+                                formControlName="email" 
+                                (blur)="logValidationMessages()"
+                                [class.is-invalid]="formErrors.email"
+                                email
+                                class="form-control"
+                                placeholder="xxxxx@gmail.com"
+                                autocomplete="off"
+                                id="email">
+                            <div *ngIf="formErrors.email" class="invalid-feedback">
+                                {{formErrors.email}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="category" class="col-md-3 col-form-label text-md-right"> Category:
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-9">
+                            <ng-multiselect-dropdown  
+                                [settings]="dropdownSettings"
+                                [data]="dropdownList"
+                                formControlName="category"  
+                                (blur)="logValidationMessages()"
+                                #multiSelect
+                                [class.is-invalid]="formErrors.category"
+                                [placeholder]="'Select Category'">
+                            </ng-multiselect-dropdown> 
+                            <div *ngIf="formErrors.category" class="invalid-feedback">
+                                {{formErrors.category}}</div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group row">
+                        <label for="password" class="col-md-3 col-form-label text-md-right">
+                            Password: <span class="text-danger">*</span> </label>
+                        <div class="col-md-9">
+                            <input type="text" 
+                                formControlName="password" 
+                                (blur)="logValidationMessages()"
+                                minlength="4"
+                                [class.is-invalid]="formErrors.password"
+                                class="form-control"
+                                placeholder="xxxxxxxxxx"
+                                autocomplete="off"
+                                id="password">
+                            <div *ngIf="formErrors.password" class="invalid-feedback">
+                                {{formErrors.password}}</div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            
+            <!-- <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group row">
+                        <label for="category" class="col-md-3 col-form-label text-md-right"> Category:
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-md-9">
+                            <ng-multiselect-dropdown  
+                                [settings]="dropdownSettings"
+                                [data]="dropdownList"
+                                formControlName="category"  
+                                (blur)="logValidationMessages()"
+                                #multiSelect
+                                [class.is-invalid]="formErrors.category"
+                                [placeholder]="'Select Category'">
+                            </ng-multiselect-dropdown> 
+                            <div *ngIf="formErrors.category" class="invalid-feedback">
+                                {{formErrors.category}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="card-footer">
+            <div class="col-md-2 offset-md-10">
+                <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary btn-sm btn-block">Update</button>
+            </div>
+        </div>
+    </form>
+    <!-- <pre>{{ userForm.value | json }}</pre> -->
+</div>

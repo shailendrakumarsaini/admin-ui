@@ -1,0 +1,51 @@
+<div class="card shadow mb-4">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6" >
+        <h4 class="m-0 font-weight-bold text-primary"> Manage Users </h4>
+      </div>
+      
+      <!-- <div class="offset-md-4 col-md-2">
+        <a [routerLink]="['dashboard', 'user', 'create']">
+          <button class="btn btn-primary btn-sm btn-block">+ Create User</button> </a>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-reponsive table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th><span>Name</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Email</span></th>
+            <th><span>Category</span></th>
+            <th><span>Action</span></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let i of userList">
+          <tr role="row" class="odd">
+            <td class="blue-link"><span (click)="redirectToUpdateUserComponent(i._id)">{{i?.name}}</span></td>
+            <td>{{i?.phone }}</td>
+            <td>{{i?.email }}</td>
+            <td><ng-container *ngFor="let i of i?.category">{{i?.name}},</ng-container> 
+            </td>
+            <td><i (click)="delete(i._id)" class="cursor" class="fa fa-trash" style="color: red;" aria-hidden="true"></i></td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="!userList.length">
+          <tr class="text-center">
+            <td colspan="6">
+              <h3>No Data</h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <pre>{{ userList | json }}</pre> -->
+      <!-- <pagination-controls *ngIf="employeeData" (pageChange)="currentPageNumber=$event" class="text-center">
+      </pagination-controls> -->
+    </div>
+  </div>
+
+</div>
