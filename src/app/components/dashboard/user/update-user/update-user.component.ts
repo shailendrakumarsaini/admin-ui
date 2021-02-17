@@ -30,22 +30,27 @@ export class UpdateUserComponent implements OnInit {
                   'required': 'Password is Required',
                   'minlength': '4 Characters are Required'
                  },
+    'image' : {
+                  'required': 'Image field is Required'
+                 },
     'category' : {
                   'required': 'Password is Required'
                  },
   };
-
   formErrors = {
     'name' : '',
     'phone':'',
     'email':'',
     'password':'',
+    'image':'',
     'category':'',
   };
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
   categries : any;
+  userData:any;
+
   constructor(
     private fb:FormBuilder, 
     private router :Router,
@@ -73,7 +78,6 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
-  userData:any;
   getUserData(){
     this.apiService.get(`user/${this.id}`).subscribe(
       (res:any) => {
@@ -86,7 +90,7 @@ export class UpdateUserComponent implements OnInit {
           name : res.name,   
           phone : res.phone,   
           email : res.email,
-          category : selectedCategries   
+          category : selectedCategries  
         })
       },
       err => console.error(err),
@@ -103,10 +107,25 @@ export class UpdateUserComponent implements OnInit {
     );
   }
 
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.userForm.patchValue({
+        image: file
+      });
+    }
+  }
+
   onSubmit(formData){
     if(this.id){
       formData.category = formData.category.map((element) => { return [element._id ] })
-      this.apiService.patch(`user/${this.id}`, formData).subscribe(
+      const formDataObj = new FormData();
+      formDataObj.append('name', formData.name);
+      formDataObj.append('phone', formData.phone);
+      formDataObj.append('email', formData.email);
+      formDataObj.append('category', formData.category);
+      formDataObj.append('image', this.userForm.get('image').value);
+      this.apiService.patch(`user/${this.id}`, formDataObj).subscribe(
         (res)=>{
           if(res && res['success']){
             this.toastr.success(res['message']);
@@ -130,7 +149,8 @@ export class UpdateUserComponent implements OnInit {
       phone : [null, [Validators.required]],   
       email : [null, [Validators.required]],   
       // password : [null, [Validators.required]],   
-      category : [null, [Validators.required]],   
+      category : [null, [Validators.required]],  
+      image : [null],  
     });
   }
 
