@@ -73,13 +73,9 @@ export class CaeateCategoryComponent implements OnInit {
             this.toastr.success(res['message']);
             this.router.navigate(['dashboard', 'category']);
           }else{
-            this.toastr.error(res['message']);
             console.error(res);
+            this.toastr.error(res['message']);
           }
-        },
-        (err)=>{
-          console.error(err);
-          this.toastr.error(err['error']['message']);
         }
       );
     }else{

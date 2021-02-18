@@ -11,27 +11,28 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                 </div>
-                <form #formCtrl="ngForm" (ngSubmit)="register(formCtrl.value)" class="user">
+                <form #form="ngForm" (ngSubmit)="register()" class="user">
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" #firstnameCtrl="ngModel" [(ngModel)]="firstname" name="FirstName" 
-                       class="form-control form-control-user" id="exampleFirstName" placeholder="First Name"
-                      required [class.is-invalid]="firstnameCtrl.invalid && (firstnameCtrl.touched || submmited)">
-                      <div *ngIf="firstnameCtrl.invalid && (firstnameCtrl.touched || submmited)" class="invalid-feedback">
-                        First Name is required field
+                      <input type="text" #nameCtrl="ngModel" [(ngModel)]="firstname" name="name" 
+                       class="form-control form-control-user" id="exampleFirstName" placeholder="Name"
+                      required [class.is-invalid]="nameCtrl.invalid && (nameCtrl.touched || submmited)">
+                      <div *ngIf="nameCtrl.invalid && (nameCtrl.touched || submmited)" class="invalid-feedback">
+                       Name is required field
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <input type="text" #lastnameCtrl="ngModel" [(ngModel)]="lastname" name="LastName"
-                       class="form-control form-control-user" id="exampleLastName" placeholder="Last Name"
-                       required [class.is-invalid]="lastnameCtrl.invalid && (lastnameCtrl.touched || submmited)">
-                       <div *ngIf="lastnameCtrl.invalid && (lastnameCtrl.touched || submmited)" class="invalid-feedback">
-                        Last Name is required field
+                      <input type="text" #phoneCtrl="ngModel" [(ngModel)]="lastname" name="phone"
+                       class="form-control form-control-user" id="exampleLastName" placeholder="000000000"
+                       required minlength="10" maxlength="10"[class.is-invalid]="phoneCtrl.invalid && (phoneCtrl.touched || submmited)">
+                       <div *ngIf="phoneCtrl.invalid && (phoneCtrl.touched || submmited)" class="invalid-feedback">
+                        <div *ngIf="phoneCtrl.errors?.required">Phone is required field</div>
+                        <div *ngIf="phoneCtrl.errors?.minlength">Please enter 10 Digits</div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <input type="email" #emailCtrl="ngModel" [(ngModel)]="email" name="Email"
+                    <input type="email" #emailCtrl="ngModel" [(ngModel)]="email" name="email"
                     class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address"
                     required email [class.is-invalid]="emailCtrl.invalid && (emailCtrl.touched || submmited)">
                     <div *ngIf="emailCtrl.invalid && (emailCtrl.touched || submmited)" class="invalid-feedback">
@@ -41,7 +42,7 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="password" #passwordCtrl="ngModel" [(ngModel)]="password" name="Password" 
+                      <input type="password" #passwordCtrl="ngModel" [(ngModel)]="password" name="password" 
                       class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"
                       required minlength="4" [class.is-invalid]="passwordCtrl.invalid && (passwordCtrl.touched || submmited)">
                       <div *ngIf="passwordCtrl.invalid && (passwordCtrl.touched || submmited)" class="invalid-feedback">
@@ -50,7 +51,7 @@
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <input type="password" #confirmpasswordCtrl="ngModel" [(ngModel)]="confirmpassword" name="ConfirmPassword" (input)="checkEqualPassword(password,confirmpassword)"
+                      <input type="password" #confirmpasswordCtrl="ngModel" [(ngModel)]="confirmpassword" name="confirmpassword" (input)="checkEqualPassword(password,confirmpassword)"
                        class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Confirm Password"
                        required minlength="4" [class.is-invalid]="confirmpasswordCtrl.invalid && (confirmpasswordCtrl.touched || submmited)">
                        <div *ngIf="confirmpasswordCtrl.invalid && (confirmpasswordCtrl.touched || submmited)" class="invalid-feedback">
@@ -74,6 +75,7 @@
                     <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                   </a>
                 </form>
+                <pre>{{ form.value | json }}</pre>
                 <hr>
                 <div class="text-center"> 
                     <a class="small" [routerLink]="['/auth/login']">Already have an account? Login!</a>

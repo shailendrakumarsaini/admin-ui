@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -13,30 +15,36 @@ export class RegisterComponent implements OnInit {
   password;
   confirmpassword;
   submmited: boolean;
-  loading : boolean;
-  @ViewChild('formCtrl') formCtrl;
+  @ViewChild('form') form;
   showErrMsg
   constructor(
-    private router:Router
+    private router:Router,
+    private apiService:ApiService,
+    private toastr:ToastrService,
     ) { }
 
   ngOnInit(): void {
   }
 
-  register(formData){
+  register(){
     this.submmited = true;
-    if(this.formCtrl.valid){
-      this.loading = true;
-      // this.registerService.checkEmailExistance(formData.Email).subscribe(res =>{
-      //   if(res['exist'] == 'true'){
-      //     this.registerService.registraction(formData).subscribe(res =>{
-      //       this.loading = false;
-      //       this.router.navigate(['login']);
-      //     },err =>this.loading = false)
-      //   }else{
-      //     this.loading = false;
-      //   }
-      // });
+    if(this.form.valid){
+      console.log(this.form.value);
+      this.apiService.post('user',this.form.value).subscribe(
+        res => {
+          if(res && res['success']){
+            this.toastr.success('Please check your mail to activate your account');
+            this.router.navigate(['/auth/login']);
+          }else{
+            console.error(res);
+            this.toastr.error(res['message']);
+          }
+        },
+        err => {
+          console.error(err);
+          this.toastr.error(err.message);
+        }
+      );
     }
   }
 

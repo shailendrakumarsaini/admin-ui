@@ -26,7 +26,8 @@ export class ApiService {
     };
     if (headers) { httpOptions.headers = headers; }
 
-    return this.http.get(`${this.apiBaseUrl}${url}`, httpOptions).pipe(catchError(this.handleError));
+    return this.http.get(`${this.apiBaseUrl}${url}`, httpOptions)
+    // .pipe(catchError(this.handleError));
   }
 
   post(url:string, requestBody:any, headers?: HttpHeaders){
@@ -35,7 +36,8 @@ export class ApiService {
     };
     if (headers) { httpOptions.headers = headers; }
 
-    return this.http.post(`${this.apiBaseUrl}${url}`, requestBody, httpOptions).pipe(catchError(this.handleError));
+    return this.http.post(`${this.apiBaseUrl}${url}`, requestBody, httpOptions)
+    // .pipe(catchError(this.handleError));
   }
 
   patch(url:string, requestBody:any, headers?: HttpHeaders){
@@ -44,7 +46,8 @@ export class ApiService {
     };
     if (headers) { httpOptions.headers = headers; }
 
-    return this.http.patch(`${this.apiBaseUrl}${url}`, requestBody, httpOptions).pipe(catchError(this.handleError));
+    return this.http.patch(`${this.apiBaseUrl}${url}`, requestBody, httpOptions)
+    // .pipe(catchError(this.handleError));
   }
 
   delete(url: any, id: string, headers?: HttpHeaders) {
@@ -53,7 +56,8 @@ export class ApiService {
     };
     if (headers) { httpOptions.headers = headers; }
 
-    return this.http.delete(`${this.apiBaseUrl}${url}/${id}`, httpOptions).pipe(catchError(this.handleError));
+    return this.http.delete(`${this.apiBaseUrl}${url}/${id}`, httpOptions)
+    // .pipe(catchError(this.handleError));
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
@@ -62,9 +66,9 @@ export class ApiService {
         this.toastr.error(errorResponse.error.message);
     } else {
         console.error('Server Side Error :', errorResponse);
-        this.toastr.error(errorResponse.error.message);
     }
-    return throwError('There is a problem with the service. We are notified & working on it. Please try again later.');
+    // return throwError('There is a problem with the service. We are notified & working on it. Please try again later.');
+    return throwError(errorResponse.error.message);
   }
   
 }

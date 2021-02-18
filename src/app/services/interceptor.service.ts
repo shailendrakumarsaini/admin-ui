@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from './api.service';
-import { Observable } from "rxjs/internal/Observable";
+import { Observable, throwError } from "rxjs";
 import { finalize } from 'rxjs/operators';
 import { tap } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { catchError } from "rxjs/operators";
 @Injectable({
     providedIn:'root'
 })
@@ -53,6 +54,7 @@ export class Interceptor implements HttpInterceptor {
                 },
                 error => {
                     if (error instanceof HttpErrorResponse) {
+                        console.log(error);
                         if (error.status == 401) {
                             // console.log(error);
                             this.toastr.error('Session Expired');
@@ -63,6 +65,20 @@ export class Interceptor implements HttpInterceptor {
                 }
             ),
             // <<<<<<<<<<<<<<<< Authorization >>>>>>>>>>>>>>>>>
+
+            // <<<<<<<<<<<<<<<< Error Handling >>>>>>>>>>>>>>>>>
+            catchError((errorResponse: HttpErrorResponse) => {
+                if (errorResponse.error instanceof ErrorEvent) {
+                    console.error('Client Side Error :', errorResponse.error.message);
+                    this.toastr.error(errorResponse.error.message);
+                } else {
+                    console.error('Server Side Error :', errorResponse);
+                    this.toastr.error(errorResponse.error.message);
+                }
+                return throwError(errorResponse);
+            }),
+            // <<<<<<<<<<<<<<<< Error Handling >>>>>>>>>>>>>>>>>
+            
             finalize(() => {
                 this.apiService.isLoading.next(false);
             }
