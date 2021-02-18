@@ -16,8 +16,7 @@ export class CourseComponent implements OnInit {
     this.apiService.get('dashboard').subscribe(
       res => {
         console.log('[response]',res);
-      },
-      err => console.error(err)
+      }
     );
   }
 

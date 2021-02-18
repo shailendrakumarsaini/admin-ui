@@ -26,8 +26,7 @@ export class CategoryComponent implements OnInit {
       res => {
         console.log('[category list]',res);
         this.categoryList = res;
-      },
-      err => console.error(err)
+      }
     );
   }
 
@@ -45,10 +44,6 @@ export class CategoryComponent implements OnInit {
           console.error(res);
           this.toastr.error(res['message']);
         }
-      },
-      (err) => { 
-        console.error(err);
-        this.toastr.error(err['error']['message']);
       }
     );
   }

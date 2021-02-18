@@ -22,8 +22,7 @@ export class UserComponent implements OnInit {
       res=>{
         console.log('[user list]',res);
         this.userList = res;
-      },
-      err=> console.log(err)
+      }
     );
   }
 

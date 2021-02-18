@@ -57,11 +57,7 @@ export class CaeateCategoryComponent implements OnInit {
           name : res['name'],
           active : res['active'],
         });
-      },
-      err => {
-        console.error(err);
-        this.toastr.error(err['error']['message']);
-      },
+      }
     );
   }
 
@@ -88,10 +84,6 @@ export class CaeateCategoryComponent implements OnInit {
             this.toastr.error(res['message']);
             console.error(res);
           }
-        },
-        (err)=>{
-          console.error(err);
-          this.toastr.error(err['error']['message']);
         }
       );
     }

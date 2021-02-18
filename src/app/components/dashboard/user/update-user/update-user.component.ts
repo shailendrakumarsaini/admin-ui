@@ -102,8 +102,7 @@ export class UpdateUserComponent implements OnInit {
       (res:any) => {
         this.categries = res;
         this.dropdownList = res.map((element) => { return { name: element.name, _id: element._id } })
-      },
-      err => console.error(err),
+      }
     );
   }
 
@@ -134,10 +133,6 @@ export class UpdateUserComponent implements OnInit {
             console.error(res);
             this.toastr.error(res['message']);
           }
-        },
-        (err)=>{
-          console.error(err);
-          this.toastr.error(err['error']['message']);
         }
       );
     }
