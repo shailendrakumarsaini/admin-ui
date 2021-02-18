@@ -27,11 +27,13 @@ export class Interceptor implements HttpInterceptor {
         //     }
         // });
 
+        // <<<<<<<<<<<<<<<< Added Token to the request header >>>>>>>>>>>>>>>>>
         const headerName = 'token';
         let token = localStorage.getItem('token');
         if (!req.headers.has(headerName) && !req.url.includes('login') && token) {
           req = req.clone({ setHeaders: { [headerName]: token } });
         }
+        // <<<<<<<<<<<<<<<< Added Token to the request header >>>>>>>>>>>>>>>>>
 
         if (req) {
             this.requests.push(req);
