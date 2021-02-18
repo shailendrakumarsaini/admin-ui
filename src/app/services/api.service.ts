@@ -19,7 +19,7 @@ export class ApiService {
   
   get(url: any, headers?: HttpHeaders) {
     let httpOptions: any = {  
-      withCredentials: true //required for cookies
+      // withCredentials: true //required for cookies
     };
     if (headers) { httpOptions.headers = headers; }
 
@@ -28,7 +28,7 @@ export class ApiService {
 
   post(url:string, requestBody:any, headers?: HttpHeaders){
     let httpOptions: any = {  
-      withCredentials: true //required for cookies
+      // withCredentials: true //required for cookies
     };
     if (headers) { httpOptions.headers = headers; }
 
@@ -37,7 +37,7 @@ export class ApiService {
 
   patch(url:string, requestBody:any, headers?: HttpHeaders){
     let httpOptions: any = {  
-      withCredentials: true //required for cookies
+      // withCredentials: true //required for cookies
     };
     if (headers) { httpOptions.headers = headers; }
 
@@ -46,7 +46,7 @@ export class ApiService {
 
   delete(url: any, id: string, headers?: HttpHeaders) {
     let httpOptions: any = {  
-      withCredentials: true //required for cookies
+      // withCredentials: true //required for cookies
     };
     if (headers) { httpOptions.headers = headers; }
 
