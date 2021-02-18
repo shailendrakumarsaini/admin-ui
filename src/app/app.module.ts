@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 // Custom Modules
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,8 @@ import { Interceptor } from './services/interceptor.service';
     AppRoutingModule
   ],
   providers: [
+    // Uncomment below line before prod deployment
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
   ],
   bootstrap: [AppComponent]
