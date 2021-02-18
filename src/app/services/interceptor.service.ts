@@ -54,7 +54,6 @@ export class Interceptor implements HttpInterceptor {
                 },
                 error => {
                     if (error instanceof HttpErrorResponse) {
-                        console.log(error);
                         if (error.status == 401) {
                             // console.log(error);
                             this.toastr.error('Session Expired');
